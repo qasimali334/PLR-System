@@ -1,0 +1,11 @@
+import { Router } from 'express';
+import { getPaths, createPath, getPathById, updatePath, deletePath, updateStep, generatePath } from '../controllers/path.controller.js';
+const router = Router();
+router.get('/',                          getPaths);
+router.post('/',                         createPath);
+router.post('/generate',                 generatePath);
+router.get('/:id',                       getPathById);
+router.put('/:id',                       updatePath);
+router.delete('/:id',                    deletePath);
+router.put('/:pathId/steps/:stepId',     updateStep);
+export default router;
