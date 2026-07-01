@@ -60,6 +60,11 @@ app.use('/api/recommendations', authMiddleware, recommendationRoutes);
 app.use('/api/ai',              authMiddleware, aiRoutes);
 app.use('/api/resources',       authMiddleware, resourceRoutes);
 
+// Welcome route
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to the PLR-System API. The API endpoints are located under /api. Use /health to check API status.' });
+});
+
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'PLR-System API is running', timestamp: new Date().toISOString() });
