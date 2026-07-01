@@ -21,8 +21,23 @@ const app = express();
 
 // Security & utilities
 app.use(helmet());
+
+const allowedOrigins = [
+  'https://plr-system-lake.vercel.app',
+  'http://localhost:5173',
+  'http://127.0.0.1:5173'
+];
+if (process.env.CORS_ORIGIN) {
+  const origins = process.env.CORS_ORIGIN.split(',').map(o => o.trim());
+  origins.forEach(o => {
+    if (o && !allowedOrigins.includes(o)) {
+      allowedOrigins.push(o);
+    }
+  });
+}
+
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  origin: allowedOrigins,
   credentials: true,
 }));
 app.use(morgan('dev'));

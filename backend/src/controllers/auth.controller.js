@@ -73,7 +73,7 @@ export const getMe = asyncHandler(async (req, res) => {
 });
 
 export const getGoogleUrl = asyncHandler(async (req, res) => {
-  const redirectBase = process.env.CORS_ORIGIN || 'http://localhost:5173';
+  const redirectBase = req.get('origin') || process.env.CORS_ORIGIN || 'https://plr-system-lake.vercel.app';
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
