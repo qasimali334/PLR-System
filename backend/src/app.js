@@ -22,7 +22,7 @@ const app = express();
 // Security & utilities
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://',
+  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
   credentials: true,
 }));
 app.use(morgan('dev'));
